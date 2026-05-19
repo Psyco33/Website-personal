@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personal Branding </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+    *{ margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+    body{ font-family:'Poppins',sans-serif; background:#f5f7ff; color:#111827; overflow-x:hidden; }
+    a{ text-decoration:none; color:inherit; }
+    section{ padding:100px 10%; }
+    .section-title{ text-align:center; margin-bottom:60px; }
+    .section-title h2{ font-size:40px; color:#4f46e5; }
+    .section-title p{ color:#6b7280; margin-top:10px; }
+
+    /* NAVBAR */
+    nav{ position:fixed; top:0; left:0; width:100%; padding:20px 10%; display:flex; justify-content:space-between; align-items:center; backdrop-filter:blur(12px); background:rgba(255,255,255,0.7); z-index:1000; border-bottom:1px solid rgba(255,255,255,0.2); }
+    nav h1{ color:#4f46e5; font-size:24px; }
+    nav ul{ display:flex; gap:30px; list-style:none; }
+    nav ul li a{ font-weight:500; transition:0.3s; }
+    nav ul li a:hover{ color:#4f46e5; }
+
+    /* HERO */
+    .hero{ min-height:100vh; display:flex; align-items:center; justify-content:space-between; gap:50px; position:relative; }
+    .hero-text{ flex:1; }
+    .hero-text h3{ color:#06b6d4; font-size:22px; }
+    .hero-text h1{ font-size:65px; line-height:1.1; margin:15px 0; }
+    .hero-text p{ color:#6b7280; line-height:1.8; margin-bottom:30px; }
+    .btn-group{ display:flex; gap:20px; }
+    .btn{ padding:14px 28px; border-radius:14px; font-weight:600; transition:0.3s; }
+    .btn-primary{ background:#4f46e5; color:white; box-shadow:0 10px 30px rgba(79,70,229,0.3); }
+    .btn-primary:hover{ transform:translateY(-4px); }
+    .btn-outline{ border:2px solid #4f46e5; color:#4f46e5; }
+    .btn-outline:hover{ background:#4f46e5; color:white; }
+
+    /* HERO IMAGE — foto lebih kecil & proporsional */
+    .hero-image{ flex:1; display:flex; justify-content:center; }
+
+    .hero-card{
+      width: 260px;          /* lebih kecil dari 350px */
+      height: 320px;         /* proporsional */
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(79,70,229,0.25);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .hero-card img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;     /* agar foto tidak gepeng */
+      object-position: center top;
+      display: block;
+    }
+
+    @keyframes float{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-15px); } }
+
+    /* ABOUT */
+    .about-container{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:50px; align-items:center; }
+    .about-image{ background:linear-gradient(135deg,#4f46e5,#06b6d4); border-radius:30px; height:400px; display:flex; justify-content:center; align-items:center; font-size:100px; color:white; }
+    .about-text p{ line-height:1.9; color:#6b7280; margin-bottom:20px; }
+
+    /* SKILLS */
+    .skills-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:25px; }
+    .skill-card{ background:white; padding:30px; border-radius:24px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.05); transition:0.3s; }
+    .skill-card:hover{ transform:translateY(-10px); }
+    .skill-card i{ font-size:40px; color:#4f46e5; margin-bottom:20px; }
+
+    /* PROJECT */
+    .project-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
+    .project-card{ background:white; border-radius:24px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.05); transition:0.3s; }
+    .project-card:hover{ transform:translateY(-10px); }
+    .project-image{ height:200px; background:linear-gradient(135deg,#06b6d4,#4f46e5); display:flex; justify-content:center; align-items:center; color:white; font-size:60px; }
+    .project-content{ padding:25px; }
+    .project-content h3{ margin-bottom:10px; }
+    .project-content p{ color:#6b7280; font-size:14px; line-height:1.7; }
+
+    /* GALLERY */
+    .gallery-grid{ columns:3 250px; gap:20px; }
+    .gallery-item{ margin-bottom:20px; background:white; border-radius:20px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.05); }
+    .gallery-item img{ width:100%; display:block; }
+
+    /* EXPERIENCE */
+    .timeline{ position:relative; max-width:800px; margin:auto; }
+    .timeline::before{ content:''; position:absolute; left:50%; width:4px; height:100%; background:#4f46e5; transform:translateX(-50%); }
+    .timeline-item{ width:50%; padding:20px 40px; position:relative; }
+    .timeline-item:nth-child(odd){ left:0; text-align:right; }
+    .timeline-item:nth-child(even){ left:50%; }
+    .timeline-content{ background:white; padding:25px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.05); }
+
+    /* CONTACT */
+    .contact-container{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px; }
+    .contact-info{ display:flex; flex-direction:column; gap:20px; }
+    .contact-card{ background:white; padding:20px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,0.05); }
+    .contact-form{ background:white; padding:30px; border-radius:24px; box-shadow:0 10px 25px rgba(0,0,0,0.05); }
+    .contact-form input, .contact-form textarea{ width:100%; padding:15px; margin-bottom:20px; border:none; border-radius:14px; background:#f3f4f6; font-family:'Poppins'; }
+    .contact-form button{ border:none; cursor:pointer; }
+
+    /* FOOTER */
+    footer{ text-align:center; padding:30px; background:#111827; color:white; }
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .hero{ flex-direction:column-reverse; text-align:center; }
+      nav ul{ display:none; }
+      .hero-text h1{ font-size:45px; }
+      .hero-card{ width:200px; height:240px; }
+      .timeline::before{ left:10px; }
+      .timeline-item{ width:100%; padding-left:40px; padding-right:0; left:0 !important; text-align:left !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <h1></h1>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h3>TKJ Student </h3>
+      <h1>SAPUTRA MURSAH <br> AL FARIZI</h1>
+      <p>
+        Saya adalah siswa Teknik Komputer dan Jaringan
+        yang fokus pada networking, server, dan web development
+        dengan desain modern serta pengalaman digital yang menarik.
+      </p>
+      <div class="btn-group">
+        <a href="#projects" class="btn btn-primary">My Project</a>
+        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <div class="hero-card">
+        <img src="c:\Users\hopkyns\Downloads\WhatsApp Image 2026-05-19 at 17.46.20.jpeg" alt="Foto Saputra">
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-title">
+      <h2>About Me</h2>
+      <p>Kenali saya lebih dekat</p>
+    </div>
+    <div class="about-container">
+      <div class="gallery-item"><img src="c:\Users\hopkyns\Downloads\WhatsApp Image 2026-05-19 at 19.53.27.jpeg"
+        ><i class=""></i>
+      </div>
+      <div class="about-text">
+        <p>Halo! Saya seorang siswa TKJ yang memiliki minat besar di bidang jaringan komputer, server administration, dan web development modern.</p>
+        <p>Saya suka membangun sistem jaringan, membuat website, serta mempelajari teknologi terbaru untuk meningkatkan skill di dunia IT.</p>
+        <p>Fokus utama saya adalah menciptakan solusi teknologi yang modern, efisien, dan menarik secara visual.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-title">
+      <h2>Skills</h2>
+      <p>Teknologi yang saya kuasai</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><i class="fa-solid fa-globe"></i><h3>Networking</h3></div>
+      <div class="skill-card"><i class="fa-brands fa-linux"></i><h3>Linux Server</h3></div>
+      <div class="skill-card"><i class="fa-solid fa-code"></i><h3>Web Development</h3></div>
+      <div class="skill-card"><i class="fa-solid fa-computer"></i><h3>Perakitan PC</h3></div>
+      <div class="skill-card"><i class="fa-brands fa-cable"></i><h3>Membuat Kabel FO & LAN</h3></div>
+    </div>
+  </section>
+
+  <!-- PROJECT -->
+  <section id="projects">
+    <div class="section-title">
+      <h2>My Projects</h2>
+      <p>Project yang pernah saya buat</p>
+    </div>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-image"><i class="fa-solid fa-server"></i></div>
+        <div class="project-content"><h3>Linux Server</h3><p>Setup server Debian untuk file sharing dan monitoring jaringan.</p></div>
+      </div>
+      <div class="project-card">
+        <div class="project-image"><i class="fa-solid fa-wifi"></i></div>
+        <div class="project-content"><h3>Hotspot Mikrotik</h3><p>Konfigurasi hotspot modern menggunakan Mikrotik RouterOS.</p></div>
+      </div>
+      <div class="project-card">
+        <div class="project-image"><i class="fa-solid fa-globe"></i></div>
+        <div class="project-content"><h3>Portfolio Website</h3><p>Website personal branding dengan desain modern dan responsive.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="section-title">
+      <h2>My Gallery</h2>
+      <p>Dokumentasi kegiatan dan project</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="c:\Users\hopkyns\Downloads\WhatsApp Image 2026-05-19 at 19.29.46.jpeg"></div>
+      <div class="gallery-item"><img src="c:\Users\hopkyns\Downloads\WhatsApp Image 2026-05-19 at 19.35.23.jpeg"></div>
+      <div class="gallery-item"><img src="c:\Users\hopkyns\Downloads\WhatsApp Image 2026-05-19 at 19.38.07.jpeg"></div>
+      <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiOTNwcw0GiSv8TB78ib1B9Y73KsdEF0G6yWA22HVt81x5JmaWs19FHVtcFSpFaM-P83GCmKGRIjVBddQQc0v8qpdNJa-j4eFfbfYPg994A361cqC0OCh6q3QmzSFd1MR9hJpkjFdgf_AXD4lG7VrpGS_qxptEY0VbpGUkIJzaaFl0bmQHRWzPPsLxNh5y2/s320/1000048110.jpg"></div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-title">
+      <h2>Experience</h2>
+      <p>Riwayat pengalaman dan perjalanan</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content"><h3>2024</h3><p>Belajar tentang hal-hal dasar TKJ</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content"><h3>2025</h3><p>Mulai mempelajari lebih dalam tentang TKJ</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content"><h3>2026</h3><p>Mulai banyak praktek untuk persiapan PKL nanti</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-title">
+      <h2>Contact</h2>
+      <p>Hubungi saya</p>
+    </div>
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="contact-card"><h3>Email</h3><p>saputramursah0014@gmail.com</p></div>
+        <div class="contact-card"><h3>Instagram</h3><p>@sputram.a</p></div>
+        <div class="contact-card"><h3>WhatsApp</h3><p>+6285799442881</p></div>
+         <div class="contact-card"><h3>portofolio blogger</h3><p>https://saputramursah.blogspot.com/</p></div>
+      </div>
+      <form class="contact-form">
+        <input type="text" placeholder="Nama">
+        <input type="email" placeholder="Email">
+        <textarea rows="5" placeholder="Pesan"></textarea>
+        <textarea rows="5" placeholder=""></textarea>
+        <button class="btn btn-primary">Kirim Pesan</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Personal Branding TKJ | Build with saputra</p>
+  </footer>
+
+</body>
+</html>
